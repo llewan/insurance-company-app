@@ -1,8 +1,6 @@
 const axios = require('axios/index');
-const jwt = require('jsonwebtoken');
-const NotFoundError = require('./notFoundError');
-const config = require('./config');
-const PoliciesService = require('./policiesService');
+const NotFoundError = require('../errors/notFoundError');
+const PoliciesService = require('../policies/service');
 
 const UserService = {
   basePath: 'http://www.mocky.io/v2/5808862710000087232b75ac',
@@ -38,17 +36,6 @@ const UserService = {
       .then(async (policy) => await UserService.get(policy.clientId))
       .catch(error => { throw error; });
   },
-
-  authenticate({ email }) {
-    return UserService.list()
-      .then((clients) => {
-        const client = clients.find(client => client.email === email);
-        if (!client) throw new NotFoundError(`Not found user with email ${email}`);
-        const token = jwt.sign({ sub: client.email, role: client.role }, config.secret);
-        return { ...client, token };
-      })
-      .catch(error => { throw error; });
-  }
 };
 
 module.exports = UserService;

@@ -1,5 +1,5 @@
 const axios = require('axios/index');
-const NotFoundError = require('./notFoundError');
+const NotFoundError = require('../errors/notFoundError');
 
 const PoliciesService = {
   basePath: 'http://www.mocky.io/v2/580891a4100000e8242b75c5',
@@ -23,7 +23,6 @@ const PoliciesService = {
   getByClient(clientId) {
   	return PoliciesService.list()
       .then((policies) => {
-        console.log('policies', clientId);
         return policies.filter(policy => policy.clientId === clientId);
       })
       .catch(error => { throw error; });
