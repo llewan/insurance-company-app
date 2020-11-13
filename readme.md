@@ -1,4 +1,4 @@
-# Brastlewark app
+# Insurance company app
 
 ## Installation
 Use npm to install this app
@@ -10,5 +10,8 @@ npm install
 ```
 npm start
 ```
+```
+npm test
+```
 
-Now head to http://localhost:8080 and see your running app!
+Now head to http://localhost:3000 and see your running app!
